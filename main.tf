@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=4.1.0"
+      version = "~> 5.56.0"
     }
   }
 }
@@ -53,7 +53,7 @@ resource "azurerm_storage_account" "example_storage" {
 resource "azurerm_mssql_server" "example" {
   name                         = "workshop-mssql-server"
   resource_group_name          = "workshop"
-  location                    = "westeurope"
+  location                    = "northeurope"
   version                     = "12.0"
   administrator_login          = "sqladminuser"
   administrator_login_password = "P@ssw0rd1234!"
