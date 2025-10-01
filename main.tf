@@ -51,7 +51,7 @@ resource "azurerm_storage_account" "example_storage" {
 
 # MSSQL Server
 resource "azurerm_mssql_server" "example" {
-  name                         = "workshop-mssql-server"
+  name                         = "workshop-mssql-server123"
   resource_group_name          = "workshop"
   location                    = "polandcentral"
   version                     = "12.0"
@@ -62,7 +62,7 @@ resource "azurerm_mssql_server" "example" {
 
 # MSSQL Database
 resource "azurerm_mssql_database" "example" {
-  name               = "workshopdb"
+  name               = "workshopdb123131"
   server_id          = azurerm_mssql_server.example.id
   sku_name           = "S0"
   collation          = "SQL_Latin1_General_CP1_CI_AS"
