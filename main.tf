@@ -48,28 +48,23 @@ resource "azurerm_storage_account" "example_storage" {
   }
 }
 
-# MySQL Flexible Server
-resource "azurerm_mysql_flexible_server" "example" {
-  name                   = "workshop-mysql-server"
-  resource_group_name    = "workshop"
-  location               = "westeurope"
-  administrator_login    = "mysqladminuser"
-  administrator_password = "P@ssw0rd1234!"
-  sku_name               = "B_Standard_B1ms"
-  version                = "8.0.21"
-  backup_retention_days  = 7
-  geo_redundant_backup_enabled = false
-  zone                   = "1"
-  storage {
-    size_gb = 32
-  }
+
+# MSSQL Server
+resource "azurerm_mssql_server" "example" {
+  name                         = "workshop-mssql-server"
+  resource_group_name          = "workshop"
+  location                    = "westeurope"
+  version                     = "12.0"
+  administrator_login          = "sqladminuser"
+  administrator_login_password = "P@ssw0rd1234!"
+  minimum_tls_version          = "1.2"
 }
 
-# MySQL Database
-resource "azurerm_mysql_flexible_database" "example" {
-  name                = "workshopdb"
-  resource_group_name = "workshop"
-  server_name         = azurerm_mysql_flexible_server.example.name
-  charset             = "utf8"
-  collation           = "utf8_unicode_ci"
+# MSSQL Database
+resource "azurerm_mssql_database" "example" {
+  name               = "workshopdb"
+  server_id          = azurerm_mssql_server.example.id
+  sku_name           = "S0"
+  collation          = "SQL_Latin1_General_CP1_CI_AS"
+  max_size_gb        = 5
 }
