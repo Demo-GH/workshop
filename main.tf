@@ -53,7 +53,7 @@ resource "azurerm_storage_account" "example_storage" {
 resource "azurerm_mssql_server" "example" {
   name                         = "workshop-mssql-server"
   resource_group_name          = "workshop"
-  location                    = "northeurope"
+  location                    = "polandcentral"
   version                     = "12.0"
   administrator_login          = "sqladminuser"
   administrator_login_password = "P@ssw0rd1234!"
