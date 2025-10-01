@@ -47,3 +47,29 @@ resource "azurerm_storage_account" "example_storage" {
     environment = "staging"
   }
 }
+
+# MySQL Flexible Server
+resource "azurerm_mysql_flexible_server" "example" {
+  name                   = "workshop-mysql-server"
+  resource_group_name    = "workshop"
+  location               = "westeurope"
+  administrator_login    = "mysqladminuser"
+  administrator_password = "P@ssw0rd1234!"
+  sku_name               = "B_Standard_B1ms"
+  version                = "8.0.21"
+  backup_retention_days  = 7
+  geo_redundant_backup_enabled = false
+  zone                   = "1"
+  storage {
+    size_gb = 32
+  }
+}
+
+# MySQL Database
+resource "azurerm_mysql_flexible_database" "example" {
+  name                = "workshopdb"
+  resource_group_name = "workshop"
+  server_name         = azurerm_mysql_flexible_server.example.name
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
+}
